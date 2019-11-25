@@ -33,5 +33,20 @@ var Tree = function(value) {
   this.children = [];
 };
 
+Tree.prototype.addChild = function(value){
+  this.children.push(new Tree(value));
+}
 
+Tree.prototype.map = function(cb){
+  var newTree = new Tree(cb(this.value));
+  this.children.forEach((child)=>{
+    newTree.addChild(cb(child.value));
+  });
+  // function recursion(){
+  //   this.children.forEach((child)=>{
 
+  //   });
+  // }
+
+  return newTree;
+}
